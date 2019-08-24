@@ -31,7 +31,7 @@ function registerAutoMockCommands() {
     const automockRecord = Cypress.config().automocker ? (Cypress.config().automocker.record !== false) : true;
     const automockPlayback = Cypress.config().automocker ? (Cypress.config().automocker.playback !== false) : true;
 
-    const testDirPath = '/cypress/integration';
+    const testDirPath = 'cypress/integration';
     options = setOptions(options);
 
     // determine the mock file name
@@ -154,7 +154,7 @@ function registerAutoMockCommands() {
               return {
                 status: mock.status,
                 statusText: mock.statusText,
-                response: JSON.stringify(mock.response)
+                response
               };
             }
           }
@@ -186,9 +186,7 @@ function registerAutoMockCommands() {
                   'statusText': xhr.statusText,
                   'contentType': contentType
                 };
-                if (contentType !== "text/html; charset=utf-8") {
-                  recordedApis.push(transformedObject);
-                }
+                recordedApis.push(transformedObject);
               }
 
               if (old_onload) {
